@@ -39,13 +39,13 @@ const app = express();
 
 app.engine('ejs', ejsMate);
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');             //telling our express app to use ejs.
+app.set('views', path.join(__dirname, 'views'));   //joining our current directory with app.js location so that we can run the app from any location/dir. 
 
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));  // to parse the body from the req object.
 app.use(methodOverride('_method'));
 
-app.use(express.static(path.join(__dirname, 'public')));   // setting up our static file (public directory).
+app.use(express.static(path.join(__dirname, 'public')));   //setting up our static file (public directory) so that the response from the server to client can include js or css.
 app.use(mongoSanitize());
 
 const secret = process.env.SECRET || "Thisshouldbeagoodsecret";
